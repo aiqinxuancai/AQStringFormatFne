@@ -1,0 +1,4 @@
+LIBRARY		"AQStringFormatFne"
+DESCRIPTION  'AQStringFormatFne Library'
+EXPORTS
+		GetNewInf
