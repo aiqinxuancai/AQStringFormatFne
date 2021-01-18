@@ -140,6 +140,8 @@ void OutputStringToELog(char* szbuf) {
 
 
 
+
+
 //功能函数及封装
 
 int sprintf_wsprintf(char* szbuf, char *fmt, ... ) { 
@@ -149,6 +151,21 @@ int sprintf_wsprintf(char* szbuf, char *fmt, ... ) {
 	iChrWritten = _vsnprintf(szbuf, 4096, fmt, argptr); 
 	va_end(argptr); 
 	return iChrWritten; 
+} 
+
+//字节集到文本
+EXTERN_C void fn_hexToString(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf) {
+     LPBYTE pData;  
+     INT nDataSize;  
+
+     pData = (LPBYTE)pArgInf [0].m_pAryData + sizeof (INT) * 2;  
+     nDataSize = *(LPINT)(pData - sizeof (INT));  
+
+}
+
+//文本到字节集
+EXTERN_C void fn_stringToHex(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf) {
+	
 } 
 
 
@@ -224,8 +241,8 @@ EXTERN_C void fn_wsprintf(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf
 				__asm 
 				{ 
 					fld pp 
-						sub esp,8 
-						fstp qword ptr [esp] 
+					sub esp,8 
+					fstp qword ptr [esp] 
 				} 
 				iArgCount++; 
 				// D945 FC fld dword ptr [ebp-4] 
@@ -237,8 +254,8 @@ EXTERN_C void fn_wsprintf(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf
 				__asm 
 				{ 
 					fld pp 
-						sub esp,8 
-						fstp qword ptr [esp] 
+					sub esp,8 
+					fstp qword ptr [esp] 
 				} 
 				iArgCount++; 
 				break; 

@@ -67,7 +67,7 @@ static const char* const g_CmdNames[] =
 	 {
 	 /*name*/        _T("StringFormat"),  
 	 /*egname*/      _T("StringFormat"),  
-	 /*explain*/     _T("格式化文本，缓冲区长度为4096"),  
+	 /*explain*/     _T("格式化文本，缓冲区长度为4096，不支持字节集型"),  
 	 /*category*/    1,  
 	 /*state*/       CT_ALLOW_APPEND_NEW_ARG,  
 	 /*ret*/         SDT_TEXT,  
