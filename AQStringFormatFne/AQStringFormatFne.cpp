@@ -5,7 +5,7 @@
 #include "AQStringFormatFne.h"
 #include <stdio.h>
 
-
+#ifndef __E_STATIC_LIB
 BOOL APIENTRY DllMain( HANDLE hModule, 
                        DWORD  ul_reason_for_call, 
                        LPVOID lpReserved
@@ -21,7 +21,7 @@ BOOL APIENTRY DllMain( HANDLE hModule,
     }
     return TRUE;
 }
-
+#endif
 
 #ifndef __E_STATIC_LIB
 PLIB_INFO WINAPI GetNewInf ()
@@ -115,13 +115,13 @@ LPBYTE AQ_StringFormat_GetAryElementInf(void* pAryData, LPINT pnElementCount)
 	return (LPBYTE)pnData;
 }
 
-HWND _eLogHwnd;
+HWND _AQ_StringFormat_eLogHwnd;
 
-BOOL __stdcall EnumChildCallback(HWND hwnd, LPARAM lp) {
+BOOL __stdcall AQ_StringFormat_EnumChildCallback(HWND hwnd, LPARAM lp) {
 
 	//BOOL (CALLBACK* WNDENUMPROC)(HWND, LPARAM)
 	if (GetDlgCtrlID(hwnd) == 1011) {
-		_eLogHwnd = hwnd;
+		_AQ_StringFormat_eLogHwnd = hwnd;
 		return false;
 	}
 	return true;
@@ -131,10 +131,10 @@ BOOL __stdcall EnumChildCallback(HWND hwnd, LPARAM lp) {
 //发送到e调试窗口文本
 void OutputStringToELog(char* szbuf) {
 	HWND hwnd = FindWindowExA(0, 0, "ENewFrame", NULL);
-	EnumChildWindows(hwnd, EnumChildCallback, 0);
-	if (_eLogHwnd) {
-		SendMessageA(_eLogHwnd, 194, 1, (long)szbuf);
-		SendMessageA(_eLogHwnd, 194, 1, (long)"\r\n");
+	EnumChildWindows(hwnd, AQ_StringFormat_EnumChildCallback, 0);
+	if (_AQ_StringFormat_eLogHwnd) {
+		SendMessageA(_AQ_StringFormat_eLogHwnd, 194, 1, (long)szbuf);
+		SendMessageA(_AQ_StringFormat_eLogHwnd, 194, 1, (long)"\r\n");
 	}
 } 
 

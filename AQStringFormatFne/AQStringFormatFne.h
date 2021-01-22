@@ -24,8 +24,9 @@ char* AQ_StringFormat_CloneTextData(char* ps)  ;
 
 
 EXTERN_C void fn_wsprintf(PMDATA_INF pRetData, INT nArgCount, PMDATA_INF pArgInf);
-//#ifndef __E_STATIC_LIB
 
+
+#ifndef __E_STATIC_LIB
 
 PFN_EXECUTE_CMD s_RunFunc [] =
 {
@@ -126,3 +127,5 @@ static LIB_INFO s_LibInfo =
 		/*pLibConst*/ 		NULL,//s_ConstInfo,
 		/*szzDependFiles*/	NULL
 };
+
+#endif
